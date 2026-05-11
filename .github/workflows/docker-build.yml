@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "Dockerfile.*"
+      - "Dockerfile-comfyui.txt"
       - ".dockerignore"
       - ".github/workflows/docker-build.yml"
 
