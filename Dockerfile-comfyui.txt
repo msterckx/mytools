@@ -1,5 +1,4 @@
-FROM nvidia/cuda:13.0.2-cudnn-runtime-ubuntu22.04
-#FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+FROM nvidia/cuda:12.8.1-cudnn-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
@@ -50,12 +49,13 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 RUN pip install --upgrade pip setuptools wheel
 
+RUN pip uninstall -y torch torchvision torchaudio xformers || true
+
 RUN pip install \
     torch \
     torchvision \
     torchaudio \
-    --index-url https://download.pytorch.org/whl/cu130
-    #--index-url https://download.pytorch.org/whl/cu126
+    --index-url https://download.pytorch.org/whl/cu128
 
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git ${COMFYUI_DIR}
 
