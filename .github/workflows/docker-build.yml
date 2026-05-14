@@ -31,6 +31,6 @@ jobs:
           file: Dockerfile-comfyui.txt
           push: true
           tags: |
-            msterckx/mytools:1.1
+            msterckx/mytools:1.3
             msterckx/mytools:latest
 
