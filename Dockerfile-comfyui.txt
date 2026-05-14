@@ -12,11 +12,6 @@ ENV HF_HOME=/cache/huggingface
 
 
 
-# install voice studio
-RUN git clone https://github.com/FranckyB/Voice-Clone-Studio /opt/Voice-Clone-Studio && \
-    cd /opt/Voice-Clone-Studio && \
-    yes n | bash setup-linux.sh
-
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
@@ -34,6 +29,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     nano \
     && rm -rf /var/lib/apt/lists/*
+
+
+
+
+# install voice studio
+RUN apt-get install -y sudo git
+RUN cd /opt;git clone https://github.com/FranckyB/Voice-Clone-Studio
+RUN cd /opt/Voice-Clone-Studio; yes n | bash setup-linux.sh
+
+
+
 
 RUN git lfs install
 
