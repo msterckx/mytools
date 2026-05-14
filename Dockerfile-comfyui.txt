@@ -10,6 +10,14 @@ ENV COMFYUI_OUTPUT_DIR=/outputs/comfyui
 ENV XDG_CACHE_HOME=/cache
 ENV HF_HOME=/cache/huggingface
 
+
+
+# install voice studio
+RUN git clone https://github.com/FranckyB/Voice-Clone-Studio /opt/Voice-Clone-Studio && \
+    cd /opt/Voice-Clone-Studio && \
+    yes n | bash setup-linux.sh
+
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-dev \
@@ -99,11 +107,7 @@ COPY id_ed25519.pub /root/.ssh/authorized_keys
 RUN chmod 600 /root/.ssh/authorized_keys
 
 
-# install voice studio
-RUN git clone https://github.com/FranckyB/Voice-Clone-Studio /opt/Voice-Clone-Studio && \
-    sed -i "s/network_mode = _user_config.get('listen_on_network', False)/network_mode=True/g" /opt/Voice-Clone-Studio/voice_clone_studio.py && \
-    cd /opt/Voice-Clone-Studio && \
-    yes n | bash setup-linux.sh
+
 
 EXPOSE 22
 
