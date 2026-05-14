@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # install voice studio
+RUN apt-get update
 RUN apt-get install -y sudo git
 RUN cd /opt;git clone https://github.com/FranckyB/Voice-Clone-Studio
 RUN cd /opt/Voice-Clone-Studio; yes n | bash setup-linux.sh
